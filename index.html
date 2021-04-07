@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+    <link rel="stylesheet" type="text/css" href="index.css" />
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="progress-bar">
+            <div style="width:50%; background-color: #b1df6f;" class="progress"> 50% </div>
+            <div style="width:50%; background-color: #ebebeb;" class="progress-empty"> &nbsp; </div>
+        </div>
+        <div class="progress-bar">
+            <div style="width:50%; background-color: #ff9683;" class="progress"> 50% </div>
+            <div style="width:50%; background-color: #ebebeb;" class="progress-empty"> &nbsp; </div>
+        </div>
+
+        <div class="progress-bar progress-bar-white">
+            <div style="width:50%; background-color: #fff;" class="progress"> 50% </div>
+            <div style="width:50%; background-color: #ebebeb;" class="progress-empty"> &nbsp; </div>
+        </div>
+
+
+        <div class="progress-bar">
+            <div style="width:50%; background-color: #9cd1f2;" class="progress"> 50% </div>
+            <div style="width:50%; background-color: #ebebeb;" class="progress-empty"> &nbsp; </div>
+        </div>
+
+        <div class="progress-bar">
+            <div style="width:50%; background-color: #fed673;" class="progress"> 50% </div>
+            <div style="width:50%; background-color: #ebebeb;" class="progress-empty"> &nbsp; </div>
+        </div>
+
+        <div class="button_container">
+            <button class="button" onclick="move()">Finish</button>
+        </div>
+
+    </div>
+
+
+    <script>
+        function move() {
+            const progressBars = document.querySelectorAll('.progress')
+            const emptyProgress = document.querySelectorAll('.progress-empty')
+            // console.log({ progressBars, emptyProgress })
+            let width = 50
+
+            const frame = () => {
+                if (width >= 100) {
+                    clearInterval(id);
+                    progressBars.forEach((element, index) => {
+                        emptyProgress[index].style.width = 0 + '%'
+                        element.style.width = 100 + "%"
+                        element.innerHTML = width * 1 + '%'
+
+                    });
+                }
+                else {
+                    progressBars.forEach((element, index) => {
+                        width++;
+                        emptyProgress[index].style.width = 100 - width + '%'
+                        element.style.width = width + "%"
+                        element.innerHTML = width * 1 + '%'
+
+                    });
+
+                }
+            }
+            let id = setInterval(frame, 100)
+        }
+    </script>
+</body>
+
+</html>
